@@ -1,3 +1,11 @@
+## 📑 Table of Contents
+- [Project Overview](#project-overview)
+- [Business Problem](#business-problem)
+- [Project Objectives](#project-objectives)
+- [Project Illustration](#project-illustration)
+- [Deliverables](#deliverables)
+- [Expected Outcomes and Benefits](#expected-outcomes-and-benefits)
+
 # **Project Overview**
 
 The Minimum Advertised Price (MAP) Policies Compliance System is a strategic initiative designed to protect brand integrity, ensure fair market competition, and enforce pricing discipline among resellers. This project aims to develop an automated, scalable, and intelligent system that monitors, detects, and enforces compliance with the client’s MAP policies across multiple online marketplaces.
