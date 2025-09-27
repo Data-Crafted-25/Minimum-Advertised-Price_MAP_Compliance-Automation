@@ -60,22 +60,19 @@ A violation record is created. The system automatically generates a formal Warni
    system, preventing further shipments or listings until compliance is verified.
 
  ## **Deliverables**
-     **MAP Compliance Monitoring Platform**
-          - Web-based dashboard for real-time visibility into compliance status.
-          - Integration with third-party marketplace APIs for price data collection.
-     **Reseller Identity Resolution Engine**
-         - Database of known resellers with aliases and cross-platform mappings.
-         - Fuzzy matching algorithm for detecting new alias usage.
-     **Automated Alerting & Communication Module**
-         - Template-driven warning letter generator (aligned with Warning Letter.docx).
-         - Email/SMS notification system with delivery tracking.
-     **Enforcement Management System**
-         - Rule-based workflow engine for issuing warnings, tracking responses, and applying sanctions.
-         - Category suspension module linked to inventory or partner management systems.
-     **Reporting and Analytics Suite**
-         - Monthly compliance reports.
-         - Heatmaps of violation trends by region, category, or reseller.
-         - Audit logs for regulatory or contractual purposes.
+- **MAP Compliance Monitoring Platform**
+  - Web-based dashboard for real-time visibility into compliance status
+  - Integration with third-party marketplace APIs for price data collection.
+- **Reseller Identity Resolution Engine**
+  - Database of known resellers with aliases and cross-platform mappings.
+  - Fuzzy matching algorithm for detecting new alias usage.
+- **Automated Alerting & Communication Module**
+  - Template-driven warning letter generator (aligned with Warning Letter.docx).
+- **Enforcement Management System**
+  - Rule-based workflow engine for issuing warnings, tracking responses, and applying sanctions.
+  - Category suspension module linked to inventory or partner management systems.
+- **Reporting and Analytics Suite**
+  - Audit logs for regulatory or contractual purposes.
 
 ## Expected Outcomes and Benefits
 Upon successful implementation, the MAP Compliance System will deliver the following benefits:
