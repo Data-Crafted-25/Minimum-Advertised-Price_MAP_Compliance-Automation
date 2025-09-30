@@ -1,4 +1,4 @@
-![Project Banner](YouTube Banner - Protecting Brand Integrity & Fair Competition.png)
+![YouTube Banner - Protecting Brand Integrity & Fair Competition.png](YouTube Banner - Protecting Brand Integrity & Fair Competition.png)
 ## 📑 Table of Contents
 - [Project Overview](#project-overview)
 - [Business Problem](#business-problem)
