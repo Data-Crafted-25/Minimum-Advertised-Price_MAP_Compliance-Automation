@@ -3,6 +3,7 @@
 - [Business Problem](#business-problem)
 - [Project Objectives](#project-objectives)
 - [Project Illustration](#project-illustration)
+- [Project Walkthrough](#Project-Walkthrough)
 - [Deliverables](#deliverables)
 - [Expected Outcomes and Benefits](#expected-outcomes-and-benefits)
 
@@ -66,6 +67,54 @@ A violation record is created. The system automatically generates a formal Warni
 
    Category Suspension: All products within the same category (e.g., “Premium Ink Cartridges”) are suspended for 7-Eleven in the client’s distribution
    system, preventing further shipments or listings until compliance is verified.
+
+ ## **Project Walkthrough**
+ - **Step 1: Load Excel Files into SQLite Database**
+   - Each input .xlsx file is loaded into a corresponding SQL table:
+   - engine = create_engine(f"sqlite:///{DB_NAME}")
+ - **Step 2: Detect Price Violations Using SQL**
+   - query = """
+     SELECT 
+    SKU, PL, Category, Sub_category, seller_name, homologated_name,
+    MAP_Price, LPP, Advertised_price, Violation_date
+    FROM price_monitoring
+    WHERE Advertised_price < LPP
+    AND Violation_date IS NOT NULL
+    """
+    violations_df = pd.read_sql(query, engine)
+- **Step 3: Normalize Seller Names**
+  - mapping_dict = dict(zip(mapping['SELLER_NAME'], mapping['HOMOLOGATED_NAME']))
+    df['homologated_name'] = df['seller_name'].map(mapping_dict).fillna(df['homologated_name'])
+- **Step 4: Generate Warning Letters with DocxTemplate**
+   - Leverages docxtpl to populate a Word template (Warning Letter.docx) using context variables.
+   - context = {
+    'Date': datetime.today().strftime('%Y-%m-%d'),
+    'Reseller_Name': row['seller_name'],
+    'Reseller_Company': row['homologated_name'],
+    'Product_Name': f"{row['SKU']} ({row['Sub_category']})",
+    'MAP_Price': f"${row['MAP_Price']:,.2f}",
+    'Advertised_Price': f"${row['Advertised_price']:,.2f}",
+    'Date_of_Violation': row['Violation_date'],
+    'Platform': row['seller_name']
+     }
+     template.render(context)
+     output_filename = f"WARNING_{safe_filename(row['homologated_name'])}_{row['SKU']}.docx"
+     template.save(os.path.join(OUTPUT_DIR, output_filename))
+- **Step 5: Flag Repeat Offenders for Suspension**
+    - Uses SQL aggregation to detect chronic violators:
+    - SELECT 
+      homologated_name, 
+      Category, 
+      COUNT(*) AS violation_count
+      FROM price_monitoring
+      WHERE Advertised_price < LPP
+      AND Violation_date IS NOT NULL
+      GROUP BY homologated_name, Category
+      HAVING COUNT(*) > 1
+    -  Results are written back to the database:
+    -  susp.to_sql("suspension_flagged", engine, if_exists="replace", index=False)
+
+
 
  ## **Deliverables**
 - **MAP Compliance Monitoring Platform**
