@@ -1,3 +1,4 @@
+![Project Banner]()
 ## 📑 Table of Contents
 - [Project Overview](#project-overview)
 - [Business Problem](#business-problem)
